@@ -1,49 +1,53 @@
 package com.intellijide.addressbook;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class AddressBookMain {
 
-    Scanner scan = new Scanner(System.in);
+    static final String FAMILY_ADDRESS_BOOK = "Family Address Book";
+    static final String PROFESSIONAL_ADDRESS_BOOK = "Professional Address Book";
     public static void main(String[] args) {
-        System.out.println("welcome to Address Book Program");
+        int userInput;
         Scanner scan = new Scanner(System.in);
-        AddressBookMain abm = new AddressBookMain();
-        abm.personDetails();
-        System.out.println();
-    }
-    void personDetails(){
-        System.out.println("Enter first and last name -> ");
-        String firstName = scan.next();
-        String lastName = scan.next();
-        System.out.println("Enter Address -> ");
-        String address = scan.next();
-        System.out.println("Enter State -> ");
-        String state = scan.next();
-        System.out.println("Enter city -> ");
-        String city = scan.next();
-        System.out.println("Enter zipcode -> ");
-        String zip = scan.next();
-        System.out.println("Enter phone number -> ");
-        String phoneNumber= scan.next();
-
-        System.out.println("-----Details of person-----");
-        System.out.println("Name -> " +firstName+ " " +lastName);
-        System.out.println("Address -> " +address);
-        System.out.println("state -> " +state);
-        System.out.println("city -> " +city);
-        System.out.println("zip code -> " +zip);
-        System.out.println("Phone Number -> " +phoneNumber);
-
-        System.out.println("Enter 1 to Add Details of new person");
-        System.out.println("Enter 2 to exit");
-        int choice = scan.nextInt();
-        switch (choice){
-            case 1:
-                personDetails();
-                break;
-            case 2:
-                System.out.println("Exited from Address book");
+        Map<String,AddressBook> addressBookMap = new HashMap<>();
+        AddressBook familyAddressBook = new AddressBook();
+        AddressBook professionalAddressBook = new AddressBook();
+        do{
+            System.out.println("Enter 1 to Add contact\nEnter 2 to Edit contact\nEnter 3 to Delete contact");
+            userInput = scan.nextInt();
+            switch (userInput){
+                case 1:
+                    familyAddressBook.addContacts();
+                    System.out.println(familyAddressBook.contactList);
+                    break;
+                case 2:
+                    familyAddressBook.editContacts();
+                    System.out.println(familyAddressBook.contactList);
+                    break;
+                case 3:
+                    familyAddressBook.deleteContacts();
+                    System.out.println(familyAddressBook.contactList);
+                    break;
+                default:
+                    System.out.println("Exited from Address Book");
+            }
         }
+        while(userInput != 0);
+
+//        familyAddressBook.addContacts();
+////        System.out.println(familyAddressBook.contactList);
+//
+//        familyAddressBook.addContacts();
+//        familyAddressBook.editContacts();
+//        System.out.println(familyAddressBook.contactList);
+//
+//        professionalAddressBook.addContacts();
+//        professionalAddressBook.editContacts();
+//        System.out.println(professionalAddressBook.contactList);
+//
+        addressBookMap.put(FAMILY_ADDRESS_BOOK, familyAddressBook);
+        addressBookMap.put(PROFESSIONAL_ADDRESS_BOOK, professionalAddressBook);
     }
 }
