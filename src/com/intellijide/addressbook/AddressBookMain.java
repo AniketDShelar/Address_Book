@@ -15,18 +15,24 @@ public class AddressBookMain {
         AddressBook familyAddressBook = new AddressBook();
         AddressBook professionalAddressBook = new AddressBook();
         do{
-            System.out.println("Enter 1 to Add contact\nEnter 2 to Edit contact\nEnter 3 to Delete contact");
+            System.out.println("Enter 1 to Add Family contact\nEnter 2 to Add Professinal contact\nEnter 3 to Edit contact\nEnter 4 to Delete contact\nEnter 0 to Exit");
             userInput = scan.nextInt();
             switch (userInput){
                 case 1:
                     familyAddressBook.addContacts();
                     System.out.println(familyAddressBook.contactList);
+                    System.out.println();
                     break;
                 case 2:
+                    professionalAddressBook.addContacts();
+                    System.out.println(professionalAddressBook.contactList);
+                    System.out.println();
+                case 3:
                     familyAddressBook.editContacts();
                     System.out.println(familyAddressBook.contactList);
+                    System.out.println();
                     break;
-                case 3:
+                case 4:
                     familyAddressBook.deleteContacts();
                     System.out.println(familyAddressBook.contactList);
                     break;
@@ -36,18 +42,9 @@ public class AddressBookMain {
         }
         while(userInput != 0);
 
-//        familyAddressBook.addContacts();
-////        System.out.println(familyAddressBook.contactList);
-//
-//        familyAddressBook.addContacts();
-//        familyAddressBook.editContacts();
-//        System.out.println(familyAddressBook.contactList);
-//
-//        professionalAddressBook.addContacts();
-//        professionalAddressBook.editContacts();
-//        System.out.println(professionalAddressBook.contactList);
-//
         addressBookMap.put(FAMILY_ADDRESS_BOOK, familyAddressBook);
         addressBookMap.put(PROFESSIONAL_ADDRESS_BOOK, professionalAddressBook);
+
+        System.out.println(addressBookMap.toString());
     }
 }
