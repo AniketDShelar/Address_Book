@@ -8,6 +8,12 @@ public class AddressBook {
         Scanner scan = new Scanner(System.in);
         System.out.println("Enter name -> ");
         String name = scan.next();
+        for (Contact contact:contactList) {
+            if(contact.getName().equals(name)){
+                System.out.println("This name is already there in AddressBook");
+                addContacts();
+            }
+        }
         System.out.println("Enter age -> ");
         int age = scan.nextInt();
         System.out.println("Enter city -> ");
