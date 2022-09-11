@@ -18,7 +18,7 @@ public class AddressBookMain {
         AddressBook professionalAddressBook = new AddressBook();
         ArrayList<AddressBook> addressBookList = new ArrayList<>();
         do{
-            System.out.println("Enter 1 to Add Family contact\nEnter 2 to Add Professinal contact\nEnter 3 to Edit contact\nEnter 4 to Delete contact\nEnter 5 to get list by city\nEnter 0 to Exit");
+            System.out.println("Enter 1 to Add Family contact\nEnter 2 to Add Professinal contact\nEnter 3 to Edit contact\nEnter 4 to Delete contact\nEnter 5 to get list by state/city\nEnter 0 to Exit");
             userInput = scan.nextInt();
             switch (userInput){
                 case 1:
@@ -43,6 +43,9 @@ public class AddressBookMain {
                     System.out.println("Enter Name of City: ");
                     String city = scan.next();
                     familyAddressBook.getPersonNameByCity(city);
+                    System.out.println("Enter Name of state: ");
+                    String state = scan.next();
+                    familyAddressBook.getPersonNameByState(state);
                     break;
                 default:
                     System.out.println("Exited from Address Book");
