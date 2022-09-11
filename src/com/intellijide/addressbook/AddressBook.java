@@ -45,7 +45,7 @@ public class AddressBook {
                 int age = scan.nextInt();
                 System.out.println("Enter city -> ");
                 String city = scan.next();
-                System.out.println("Enter state -> ");
+                System.out.println("Enter state -> " );
                 String state = scan.next();
 
                 contact.setName(name);
