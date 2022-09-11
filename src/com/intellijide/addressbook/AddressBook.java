@@ -7,13 +7,16 @@ import java.util.stream.Stream;
 
 public class AddressBook {
     Map<String, AddressBook> addressBookListMap = new HashMap<>();
+    public static HashMap<String, ArrayList<Contact>> personByState;
+    public static HashMap<String, ArrayList<Contact>> personByCity;
     ArrayList<Contact> contactList = new ArrayList<>();
-    void addContacts() {
+    public void addContacts() {
+
         Scanner scan = new Scanner(System.in);
         System.out.println("Enter name -> ");
         String name = scan.next();
-        for (Contact contact:contactList) {
-            if(contact.getName().equals(name)){
+        for (Contact contact : contactList) {
+            if (contact.getName().equals(name)) {
                 System.out.println("This name is already there in AddressBook");
                 addContacts();
             }
@@ -31,7 +34,6 @@ public class AddressBook {
         contact.setState(state);
 
         contactList.add(contact);
-
     }
     void editContacts(){
         Scanner scan = new Scanner(System.in);
@@ -62,6 +64,13 @@ public class AddressBook {
             value.getPersonNameByCity(city);
         }
     }
+    private void searchPersonByState(String stateName) {
+        for (Map.Entry<String, AddressBook> entry : addressBookListMap.entrySet()) {
+            AddressBook value = entry.getValue();
+            System.out.println("The Address Book: " + entry.getKey());
+            value.getPersonNameByState(stateName);
+        }
+    }
         public void getPersonNameByCity (String city){
         List<Contact> list = contactList.stream().filter(contactName -> contactName.getCity().equals(city))
                 .collect(Collectors.toList());
@@ -69,6 +78,13 @@ public class AddressBook {
             System.out.println("Name: " + contact.getName());
             }
         }
+    public void getPersonNameByState(String State) {
+        List<Contact> list = contactList.stream().filter(contactName -> contactName.getState().equals(State))
+                .collect(Collectors.toList());
+        for (Contact contact : list) {
+            System.out.println("First Name: " + contact.getName());
+        }
+    }
     void deleteContacts(){
         Scanner scan = new Scanner(System.in);
         System.out.println("Enter the name of person to Delete -> ");
@@ -83,7 +99,8 @@ public class AddressBook {
     @Override
     public String toString() {
         return "AddressBook{" +
-                "contactList=" + contactList +
+                "addressBookListMap=" + addressBookListMap +
+                ", contactList=" + contactList +
                 '}';
     }
 }
