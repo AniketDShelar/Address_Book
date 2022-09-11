@@ -1,8 +1,12 @@
 package com.intellijide.addressbook;
 
+import java.lang.reflect.Array;
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class AddressBook {
+    Map<String, AddressBook> addressBookListMap = new HashMap<>();
     ArrayList<Contact> contactList = new ArrayList<>();
     void addContacts() {
         Scanner scan = new Scanner(System.in);
@@ -27,6 +31,7 @@ public class AddressBook {
         contact.setState(state);
 
         contactList.add(contact);
+
     }
     void editContacts(){
         Scanner scan = new Scanner(System.in);
@@ -40,7 +45,7 @@ public class AddressBook {
                 int age = scan.nextInt();
                 System.out.println("Enter city -> ");
                 String city = scan.next();
-                System.out.println("Enter state -> ");
+                System.out.println("Enter state -> " );
                 String state = scan.next();
 
                 contact.setName(name);
@@ -50,6 +55,20 @@ public class AddressBook {
             }
         }
     }
+    public void searchPersonNameByCity(String city) {
+        for (Map.Entry<String, AddressBook> entry : addressBookListMap.entrySet()) {
+            AddressBook value = entry.getValue();
+            System.out.println("The Address Book: " + entry.getKey());
+            value.getPersonNameByCity(city);
+        }
+    }
+        public void getPersonNameByCity (String city){
+        List<Contact> list = contactList.stream().filter(contactName -> contactName.getCity().equals(city))
+                .collect(Collectors.toList());
+        for (Contact contact : list) {
+            System.out.println("Name: " + contact.getName());
+            }
+        }
     void deleteContacts(){
         Scanner scan = new Scanner(System.in);
         System.out.println("Enter the name of person to Delete -> ");
