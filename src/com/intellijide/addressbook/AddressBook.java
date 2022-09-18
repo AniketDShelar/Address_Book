@@ -1,15 +1,20 @@
 package com.intellijide.addressbook;
 
+import java.io.IOException;
 import java.lang.reflect.Array;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
 public class AddressBook {
+
+    final String FILE_PATH = "C:\\Users\\Admin\\IdeaProjects\\addressbook\\src\\com\\intellijide\\addressbook\\addressbookfile.txt";
+    int counter;
     Map<String, AddressBook> addressBookListMap = new HashMap<>();
     public static HashMap<String, ArrayList<Contact>> personByState;
     public static HashMap<String, ArrayList<Contact>> personByCity;
-    ArrayList<Contact> contactList = new ArrayList<>();
+    static ArrayList<Contact> contactList = new ArrayList<>();
     public void addContacts() {
 
         Scanner scan = new Scanner(System.in);
@@ -34,6 +39,7 @@ public class AddressBook {
         contact.setState(state);
 
         contactList.add(contact);
+        counter++;
     }
     void editContacts(){
         Scanner scan = new Scanner(System.in);
@@ -93,6 +99,25 @@ public class AddressBook {
             if(contact.getName().equals(pName)){
                 contactList.remove(contact);
             }
+        }
+    }
+    public void writeData(List<Contact> contactList) {
+        StringBuffer contactBuffer = new StringBuffer();
+        contactList.forEach(contact ->{
+            String contactString = contact.toString().concat("\n");
+            contactBuffer.append(contactString);
+        });
+        try {
+            Files.write(Path.of(FILE_PATH),contactBuffer.toString().getBytes());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public void readData() {
+        try {
+            Files.lines(Path.of(FILE_PATH)).forEach(x -> System.out.println(x));
+        } catch (IOException e) {
+            System.out.println(e);
         }
     }
 

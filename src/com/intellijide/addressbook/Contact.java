@@ -6,6 +6,16 @@ public class Contact {
     private String city;
     private String state;
 
+    public Contact(String name, int age, String city, String state) {
+        this.name = name;
+        this.age = age;
+        this.city = city;
+        this.state = state;
+    }
+    Contact(){
+
+    }
+
     public String getName() {
         return name;
     }
