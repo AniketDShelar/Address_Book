@@ -1,9 +1,6 @@
 package com.intellijide.addressbook;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class AddressBookMain {
 
@@ -61,6 +58,10 @@ public class AddressBookMain {
 
         System.out.println(addressBookList);
         System.out.println(addressBookMap.toString());
+        System.out.println("Enter Name of City: ");
+        String cityName2 = scan.next();
+//        familyAddressBook.CountByCity(cityName2);
 
+//        addressBookList.sort(Comparator.comparing(addressBook -> addressBook.toString()));
     }
 }
