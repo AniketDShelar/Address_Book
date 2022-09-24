@@ -1,32 +1,32 @@
 package com.intellijide.addressbook;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ConcurrentNavigableMap;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class AddressBookTest {
-
+public class AddressBookTest {
     @Test
-    void writeData() {
-        Contact contact1 = new Contact("Amit",22,"Pune","Maharashtra");
-        Contact contact2 = new Contact("Akash",23,"Mumbai","Maharashtra");
-        Contact contact3 = new Contact("Neha",21,"Nashik","Maharashtra");
+    void givenThreePersonInfoAfterInFileWritingShouldReturnEntryCount() {
+
+
+        Contact contact1 = new Contact("Amit", 22, "Nashik", "Maharashtra");
+        Contact contact2 = new Contact("Neha", 21, "Pune", "Maharashtra");
+        Contact contact3 = new Contact("Raj", 23, "Mumbai", "Maharashtra");
 
         List<Contact> list = new ArrayList<>();
         list.add(contact1);
         list.add(contact2);
         list.add(contact3);
 
-        AddressBook addressBook = new AddressBook();
-        addressBook.writeData(list);
+        AddressBookFileIO addressBook = new AddressBookFileIO(list);
+        addressBook.writeData();
         addressBook.readData();
-    }
-
-    @Test
-    void readData() {
-
+        long count = addressBook.countEntries();
+        Assertions.assertEquals(3,count);
     }
 }
