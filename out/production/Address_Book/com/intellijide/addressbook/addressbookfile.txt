@@ -1,3 +1,0 @@
-Contact{name='Amit', age=22, city='Pune', state='Maharashtra'}
-Contact{name='Akash', age=23, city='Mumbai', state='Maharashtra'}
-Contact{name='Neha', age=21, city='Nashik', state='Maharashtra'}
